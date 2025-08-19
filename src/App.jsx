@@ -1,46 +1,21 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import Welcome from "./components/welcome-page";
+import Signup from "./components/signup-page";
+import Login from "./components/login";
+import Account from "./components/accounts";
+
+
 const App = () => {
+  const [page, setPage] = useState("welcome");
+  const [user, setUser] = useState(null);
+
   return (
-      <div className="container d-flex justify-content-center align-items-center bg-light mt-5">
-        <div
-          className="card shadow-sm text-center d-flex flex-column"
-          style={{ width: "320px", height: "600px" }}
-        >
-          {/* Image / Logo Placeholder */}
-          <div className="mt-5">
-            <div
-              className="rounded-circle bg-warning text-white d-flex align-items-center justify-content-center mx-auto"
-              style={{ width: "30px", height: "30px", fontWeight: "bold" }}
-            >
-              1
-            </div>
-          </div>
-
-          {/* Welcome Text */}
-          <div className="mt-auto p-4">
-            <h5 className="fw-bold">Welcome to PopX</h5>
-            <p className="text-muted small">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            </p>
-
-            {/* Buttons */}
-            <div className="d-grid gap-2 mt-3">
-              <button
-                className="btn btn-primary fw-bold"
-                style={{ backgroundColor: "#8a2be2", border: "none" }}
-              >
-                Create Account
-              </button>
-              <button
-                className="btn fw-bold text-dark"
-                style={{ backgroundColor: "#e6e0f8" }}
-              >
-                Already Registered? Login
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+    <>
+      {page === "welcome" && <Welcome setPage={setPage} />}
+      {page === "signup" && <Signup setPage={setPage} setUser={setUser} />}
+      {page === "login" && <Login setPage={setPage} user={user} />}
+      {page === "account" && <Account setPage={setPage} user={user} />}
+    </>
   );
 };
 
